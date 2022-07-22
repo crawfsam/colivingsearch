@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path')
+const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const Coliving = require('./models/coliving');
 
@@ -15,12 +16,22 @@ db.once("open", () => {
 });
 
 const app = express();
+
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'))
+
 
 app.get('/', async (req, res) => {
-    const colivings = await Coliving.find({});
-    res.render('index', { colivings });
+    res.render('index');
+});
+
+app.get('/coliving', async (req, res) => {
+    res.render('coliving');
+});
+
+app.get('/login', async (req, res) => {
+    res.render('login');
 });
 
 app.listen(3000, () => {
