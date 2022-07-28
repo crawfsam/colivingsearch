@@ -1,1 +1,9 @@
 <% layout('layouts/boilerplate')%>
+<div class="container">
+	<div id="map" style='width: 100%; height: 600px; max-height: 70vh;'></div>
+</div>
+<script>
+	const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+	const colivings = <%-JSON.stringify(coliving)%>;
+</script>
+<script src="/js/showMap.js"></script>
