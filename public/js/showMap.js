@@ -17,7 +17,8 @@ for(let coliving of colivings) {
         .setHTML(
             `<p>${coliving.name}</p>
             <p>${coliving.city},${coliving.country}</p>
-            <a href="${coliving.url} target=_blank">Visit website</a>`
+            <a href="${coliving.url}" target="_blank">Visit website</a>
+            <a href="/coliving/${coliving._id}">More info</a>`
         )
     )
 }

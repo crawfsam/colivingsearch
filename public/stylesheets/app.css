@@ -4,3 +4,10 @@
     box-sizing: border-box;
     font-family: 'Carme', sans-serif;
 }
+
+
+footer {
+    position:absolute;
+    bottom:0;
+    width: 100%;
+}

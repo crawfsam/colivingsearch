@@ -26,21 +26,21 @@ const seeds = [
         city: "Tallinn",
         country: "Estonia",
         address: "Telliskivi 62, 10412 Tallinn, Estonia",
-        url: "https://www.hektorstay.com/container/en/discover-container-hotel/"
+        url: "https://www.hektorstay.com/container/en/discover-container-hotel"
     },
     {
         name: "Arctic Coworking Lodge",
         city: "Bøstad",
         country: "Norway",
         address: "Tangstad 191, 8360 Bøstad, Norway",
-        url: "https://www.arcticcoworking.com/"
+        url: "https://www.arcticcoworking.com"
     },
     {
         name: "Gastón Coliving",
         city: "Medellín",
         country: "Colombia",
         address: "Cra 83 #4635, Medellín, La América, Medellín, Antioquia, Colombia",
-        url: "http://gaston-coliving.medellin-hotels.com/en/"
+        url: "http://gaston-coliving.medellin-hotels.com"
     }
 ]
 

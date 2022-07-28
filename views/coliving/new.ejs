@@ -1,0 +1,27 @@
+<% layout('./layouts/boilerplate')%>
+<div class="container">
+<form action="/coliving" method="POST">
+	<div>
+		<label for="title">Name</label>
+		<input type="text" id="title" name="coliving[name]">
+	</div>
+	<div>
+		<label for="city">City</label>
+		<input type="text" id="city" name="coliving[city]">
+	</div>
+	<div>
+		<label for="country">Country</label>
+		<input type="text" id="country" name="coliving[country]">
+	</div>
+	<div>
+		<label for="address">Address</label>
+		<input type="text" id="address" name="coliving[address]">
+	</div>
+	<div>
+		<label for="url">URL</label>
+		<input type="text" id="url" name="coliving[url]">
+	</div>
+	<button>Add Coliving</button>
+</form>
+<a href="/coliving">Back to Coliving Search</a>
+</div>

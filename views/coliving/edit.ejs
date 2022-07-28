@@ -1,0 +1,28 @@
+<% layout('./layouts/boilerplate')%>
+<div class="container">
+    <h1>Edit Coliving</h1>
+    <form action="/coliving/<%=coliving._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Name</label>
+            <input type="text" id="title" name="coliving[name]" value="<%=coliving.name %>">
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input type="text" id="city" name="coliving[city]" value="<%=coliving.city %>">
+        </div>
+        <div>
+            <label for="country">Country</label>
+            <input type="text" id="country" name="coliving[country]" value="<%=coliving.country %>">
+        </div>
+        <div>
+            <label for="address">Address</label>
+            <input type="text" id="address" name="coliving[address]" value="<%=coliving.address %>">
+        </div>
+        <div>
+            <label for="url">URL</label>
+            <input type="text" id="url" name="coliving[url]" value="<%=coliving.url %>">
+        </div>
+        <button>Update Coliving</button>
+    </form>
+    <a href="/coliving">Back to Coliving Search</a>
+</div>
