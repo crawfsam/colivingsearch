@@ -1,13 +1,17 @@
 <% layout('./layouts/boilerplate')%>
-<div class="container">
-    <h1><%= coliving.name %></h1>
-    <h2><%= coliving.city %>, <%=coliving.country%></h2>
-    <p> <a href="/coliving/<%=coliving._id%>/edit">Edit</a>
-    </p>
-    <p>
-    <form action="/coliving/<%=coliving._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
-    </p>
-    <a href="/coliving">Back to Coliving Search</a>
+<div class="row">
+    <h1 class="text-center"><%= coliving.name %></h1>
+    <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
+    <div class=" col-6 offset-3 mt-5 mb-5">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sapiente temporibus vitae accusantium voluptatibus quam harum autem corrupti, sunt eaque quidem. Rem, quas! Magni itaque officia commodi iste voluptatibus rem.
+    </div>
+    <div class="col-6 offset-3 mb-3">
+        <a class="btn btn-warning" href="/coliving/<%=coliving._id%>/edit">Edit</a>
+        <form class="d-inline" action="/coliving/<%=coliving._id%>?_method=DELETE" method="POST">
+            <button  class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+    <div class="col-6 offset-3">
+        <a href="/coliving">Back to Coliving Search</a>
+    </div>
 </div>

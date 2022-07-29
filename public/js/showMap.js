@@ -1,11 +1,11 @@
 
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
-container: 'map', // container ID
-style: 'mapbox://styles/mapbox/streets-v11', // style URL
-center: [0, 0], // starting position [lng, lat]
-zoom: 1, // starting zoom
-projection: 'globe' // display the map as a 3D globe
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11', 
+center: [0, 0], 
+zoom: 1, 
+projection: 'globe' 
 });
 
 for(let coliving of colivings) {
@@ -15,8 +15,8 @@ for(let coliving of colivings) {
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
         .setHTML(
-            `<p>${coliving.name}</p>
-            <p>${coliving.city},${coliving.country}</p>
+            `<strong><p>${coliving.name}</p></strong>
+            <p>${coliving.city}, ${coliving.country}</p>
             <a href="${coliving.url}" target="_blank">Visit website</a>
             <a href="/coliving/${coliving._id}">More info</a>`
         )
