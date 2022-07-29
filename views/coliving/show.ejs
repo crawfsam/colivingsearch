@@ -1,17 +1,71 @@
 <% layout('./layouts/boilerplate')%>
 <div class="row">
-    <h1 class="text-center"><%= coliving.name %></h1>
-    <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
-    <div class=" col-6 offset-3 mt-5 mb-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sapiente temporibus vitae accusantium voluptatibus quam harum autem corrupti, sunt eaque quidem. Rem, quas! Magni itaque officia commodi iste voluptatibus rem.
+    <div class="col-6">
+        <h1 class="text-center"><%= coliving.name %></h1>
+        <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
+        <div class=" col-6 offset-3 mt-5 mb-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sapiente temporibus vitae accusantium voluptatibus quam harum autem corrupti, sunt eaque quidem. Rem, quas! Magni itaque officia commodi iste voluptatibus rem.
+        </div>
     </div>
-    <div class="col-6 offset-3 mb-3">
-        <a class="btn btn-warning" href="/coliving/<%=coliving._id%>/edit">Edit</a>
-        <form class="d-inline" action="/coliving/<%=coliving._id%>?_method=DELETE" method="POST">
-            <button  class="btn btn-danger">Delete</button>
-        </form>
-    </div>
-    <div class="col-6 offset-3">
-        <a href="/coliving">Back to Coliving Search</a>
+    <div class="col-6">
+        <% if(currentUser){ %>
+            <div class="mb-5">
+                <h3>Leave a Review</h2>
+                <form action="/coliving/<%=coliving._id%>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
+                    <fieldset class="starability-basic">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review Text</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        <% } else {%>
+            <div class="mb-5">
+                <h3>Leave a Review</h2>
+                <p>To leave a review you will need to <a href="/login">log in</a> or <a href="/register">register</a></p>   
+            </div>
+        <% } %>
+        <% for (let review of coliving.reviews) { %> 
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Rating: <%= review.rating%></strong></h5>
+                    <p class="card-text">Review: <%= review.body %></p>
+                    <p>Reviewed by <%=review.author.username%></p>
+                    <% if( currentUser && review.author.equals(currentUser._id) || currentUser && currentUser.isAdmin )  {%> 
+                    <form action="/coliving/<%=coliving._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+        <% if (currentUser && currentUser.isAdmin) { %>
+        <div class="col-6 mb-3">
+            <a class="btn btn-warning" href="/coliving/<%=coliving._id%>/edit">Edit</a>
+            <form class="d-inline" action="/coliving/<%=coliving._id%>?_method=DELETE" method="POST">
+                <button  class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        <% } %>
+        <div class="col-6 mb-5">
+            <a href="/coliving">Back to Coliving Search</a>
+        </div>
     </div>
 </div>

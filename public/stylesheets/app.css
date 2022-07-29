@@ -5,9 +5,6 @@
     font-family: 'Carme', sans-serif;
 }
 
-
-footer {
-    position:absolute;
-    bottom:0;
-    width: 100%;
+body {
+    height: 100vh;
 }

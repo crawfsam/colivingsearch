@@ -45,6 +45,7 @@ const seeds = [
 ]
 
 const seedDB = async () => {
+    console.log('seeding...')
     await Coliving.deleteMany({});
     for(let seed of seeds) {
         let geoData = await geocoder.forwardGeocode({
@@ -63,6 +64,7 @@ const seedDB = async () => {
         })
         await c.save()
     }
+    console.log('seeding completed')
 };
 
 
