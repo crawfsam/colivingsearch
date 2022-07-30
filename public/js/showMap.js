@@ -15,7 +15,7 @@ for(let coliving of colivings) {
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
         .setHTML(
-            `<strong><p>${coliving.name}</p></strong>
+            `<strong><p id="name">${coliving.name}</p></strong>
             <p>${coliving.city}, ${coliving.country}</p>
             <a href="${coliving.url}" target="_blank">Visit website</a>
             <a href="/coliving/${coliving._id}">More info</a>`

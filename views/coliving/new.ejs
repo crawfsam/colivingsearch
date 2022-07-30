@@ -2,7 +2,7 @@
 <div class="row">
 	<h2 class="text-center">New Coliving</h2>
 	<div class="col-6 offset-3">
-		<form action="/coliving" method="POST" novalidate class="needs-validation">
+		<form action="/coliving" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
 			<div class="mb-3">
 				<label class="form-label" for="title">Name</label>
 				<input class="form-control" type="text" id="title" name="coliving[name]" required>
@@ -27,6 +27,15 @@
 				<label class="form-label" for="url">URL</label>
 				<input class="form-control" type="text" id="url" name="coliving[url]" required>
 				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="mb-3">
+				<div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple >
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
 			</div>
 			<div class="mb-3">
 				<button class="btn btn-success mb-3">Add Coliving</button>

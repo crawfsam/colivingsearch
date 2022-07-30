@@ -2,8 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Review = require('./review')
 
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+});
+
+ImageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
+const opts = { toJSON: { virtuals: true } };
+
+
 const ColivingSchema = new Schema({
     name: String,
+    images: [ImageSchema],
     city: String,
     country: String,
     address: String,
@@ -25,7 +38,7 @@ const ColivingSchema = new Schema({
             ref: 'Review'
         }
     ]
-});
+}, opts);
 
 ColivingSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {

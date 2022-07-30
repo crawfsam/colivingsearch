@@ -1,7 +1,30 @@
 <% layout('./layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
 <div class="row">
     <div class="col-6">
         <h1 class="text-center"><%= coliving.name %></h1>
+        <% if (coliving.images[0]) { %>
+            <div id="colivingCarousel" class="carousel slide mb-3" data-ride="carousel">
+                <div class="carousel-inner">
+                    <% coliving.images.forEach((img, i) => {  %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+                        <img src="<%= img.url%>" class="d-block w-100" alt="image of <%=coliving.name%> in <%=coliving.country%>">
+                    </div>
+                    <% }) %>
+    
+                </div>
+                <% if(coliving.images.length > 1) {%>
+                <a class="carousel-control-prev" href="#colivingCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#colivingCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <% } %>
+            </div>
+        <% } %>
         <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
         <div class=" col-6 offset-3 mt-5 mb-5">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sapiente temporibus vitae accusantium voluptatibus quam harum autem corrupti, sunt eaque quidem. Rem, quas! Magni itaque officia commodi iste voluptatibus rem.
@@ -45,9 +68,11 @@
         <% for (let review of coliving.reviews) { %> 
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title"><strong>Rating: <%= review.rating%></strong></h5>
-                    <p class="card-text">Review: <%= review.body %></p>
-                    <p>Reviewed by <%=review.author.username%></p>
+                    <h4><%=review.author.username%></h4>
+                    <p class="starability-result" data-rating="<%=review.rating%>">
+                        Rated: <%= review.rating %> stars
+                    </p>
+                    <p class="card-text"><%= review.body %></p>
                     <% if( currentUser && review.author.equals(currentUser._id) || currentUser && currentUser.isAdmin )  {%> 
                     <form action="/coliving/<%=coliving._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
