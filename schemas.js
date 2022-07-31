@@ -31,6 +31,7 @@ module.exports.colivingSchema = Joi.object({
         address: Joi.string().required().escapeHTML(),
         url: Joi.string().required().escapeHTML(),
     }).required(),
+    deleteImages: Joi.array()
 });
 
 module.exports.reviewSchema = Joi.object({

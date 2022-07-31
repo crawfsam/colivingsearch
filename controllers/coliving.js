@@ -2,6 +2,7 @@ const Coliving = require('../models/coliving');
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapboxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapboxToken });
+const { cloudinary } = require('../cloudinary');
  
  module.exports.index = async (req, res) => {
     const coliving = await Coliving.find({})
@@ -51,6 +52,15 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateColiving = async (req, res) => {
     const { id } = req.params;
     const coliving = await Coliving.findByIdAndUpdate(id, { ...req.body.coliving });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    coliving.images.push(...imgs);
+    await coliving.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await campground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+    }
     res.redirect(`/coliving/${coliving._id}`)
 };
 

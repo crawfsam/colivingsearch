@@ -1,7 +1,7 @@
 <% layout('./layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/stars.css">
 <div class="row">
-    <div class="col-6">
+    <div class="col-sm-6">
         <h1 class="text-center"><%= coliving.name %></h1>
         <% if (coliving.images[0]) { %>
             <div id="colivingCarousel" class="carousel slide mb-3" data-ride="carousel">
@@ -26,11 +26,11 @@
             </div>
         <% } %>
         <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
-        <div class=" col-6 offset-3 mt-5 mb-5">
+        <p class="mt-5">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sapiente temporibus vitae accusantium voluptatibus quam harum autem corrupti, sunt eaque quidem. Rem, quas! Magni itaque officia commodi iste voluptatibus rem.
-        </div>
+        </p>
     </div>
-    <div class="col-6">
+    <div class="col-sm-6">
         <% if(currentUser){ %>
             <div class="mb-5">
                 <h3>Leave a Review</h2>
