@@ -5,7 +5,12 @@ const geocoder = mbxGeocoding({ accessToken: mapboxToken });
 const { cloudinary } = require('../cloudinary');
  
  module.exports.index = async (req, res) => {
-    const coliving = await Coliving.find({})
+    const coliving = await Coliving.find({}).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
     res.render('coliving/index', {coliving} );
 };
 
@@ -21,7 +26,6 @@ module.exports.createColiving = async (req, res) => {
     const coliving = new Coliving(req.body.coliving);
     coliving.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     coliving.geometry = geoData.body.features[0].geometry;
-    console.log(coliving)
     await coliving.save();
     res.redirect(`/coliving/${coliving._id}`)
 };

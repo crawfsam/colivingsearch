@@ -2,7 +2,7 @@
 <div class="row">
 	<h2 class="text-center">Edit Coliving</h2>
 	<div class="col-6 offset-3">
-        <form action="/coliving/<%=coliving._id%>?_method=PUT" method="POST" novalidate class="needs-validation">
+        <form action="/coliving/<%=coliving._id%>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate class="needs-validation">
 			<div class="mb-3">
 				<label class="form-label" for="title">Name</label>
 				<input class="form-control" type="text" id="title" name="coliving[name]" value="<%=coliving.name %>" required>

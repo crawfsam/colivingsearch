@@ -25,8 +25,11 @@
                 <% } %>
             </div>
         <% } %>
+        <div id="rating" class="mb-5">
+        </div>
         <div class="mb-5">
             <p><%= coliving.description %></p>
+            <a href="<%= coliving.url %>">For more info, visit their website</a> 
         </div>
     </div>
     <div class="col-sm-6">
@@ -103,3 +106,4 @@
     const allColivings = <%- JSON.stringify(allColivings)%>;
 </script>
 <script src="../js/miniMap.js"></script>
+<script src='/js/calcReviews.js'></script>

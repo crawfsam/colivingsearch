@@ -29,3 +29,7 @@ body {
       display: none;
     }
   }
+
+.mapbox-img {
+  max-width: 200px;
+}
