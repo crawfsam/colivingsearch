@@ -21,6 +21,7 @@ const ColivingSchema = new Schema({
     country: String,
     address: String,
     url: String,
+    description: String,
     geometry: {
         type: {
             type: String,

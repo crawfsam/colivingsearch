@@ -23,3 +23,9 @@ body {
     width: 100%;
     height: 50px;
   }
+
+  @media only screen and (max-width: 991px) {
+    .navbar-text .no-mobile {
+      display: none;
+    }
+  }

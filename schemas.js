@@ -30,6 +30,7 @@ module.exports.colivingSchema = Joi.object({
         country: Joi.string().required().escapeHTML(),
         address: Joi.string().required().escapeHTML(),
         url: Joi.string().required().escapeHTML(),
+        description: Joi.string().required().escapeHTML()
     }).required(),
     deleteImages: Joi.array()
 });

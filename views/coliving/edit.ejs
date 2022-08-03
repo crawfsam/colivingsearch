@@ -38,6 +38,14 @@
                 </div>
 			</div>
 			<div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="coliving[description]"
+                    required><%= coliving.description%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+			<div class="mb-3">
                 <% coliving.images.forEach(function(img, i) {  %>
                 <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
                 <div class="form-check-inline">

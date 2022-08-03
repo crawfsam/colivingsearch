@@ -25,12 +25,15 @@
                 <% } %>
             </div>
         <% } %>
-        <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
-        <p class="mt-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sapiente temporibus vitae accusantium voluptatibus quam harum autem corrupti, sunt eaque quidem. Rem, quas! Magni itaque officia commodi iste voluptatibus rem.
-        </p>
+        <div class="mb-5">
+            <p><%= coliving.description %></p>
+        </div>
     </div>
     <div class="col-sm-6">
+            <div class="mb-5">
+                <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
+                <div class="p-0" id="map" style='width: 100%; height: 300px; max-height: 70vh;'></div>
+            </div>
         <% if(currentUser){ %>
             <div class="mb-5">
                 <h3>Leave a Review</h2>
@@ -94,3 +97,9 @@
         </div>
     </div>
 </div>
+<script>
+	const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+	const coliving = <%-JSON.stringify(coliving)%>;
+    const allColivings = <%- JSON.stringify(allColivings)%>;
+</script>
+<script src="../js/miniMap.js"></script>

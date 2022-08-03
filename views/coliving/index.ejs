@@ -1,6 +1,7 @@
 <% layout('./layouts/boilerplate')%>
-<div class="container mb-5">
-	<div id="map" style='width: 100%; height: 600px; max-height: 70vh;'></div>
+<div class="container mb-5 p-0">
+	<h1 class="mb-5 text-center">Coliving Community Map Search</h1>
+	<div class="p-0" id="map" style='width: 100%; height: 600px; max-height: 100vh;'></div>
 </div>
 <script>
 	const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

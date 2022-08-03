@@ -27,6 +27,7 @@ module.exports.createColiving = async (req, res) => {
 };
 
 module.exports.showColiving = async (req, res,) => {
+    const allColivings = await Coliving.find({});
     const coliving = await Coliving.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
@@ -37,7 +38,7 @@ module.exports.showColiving = async (req, res,) => {
         req.flash('error', 'Cannot find that coliving!');
         return res.redirect('/coliving');
     }
-    res.render('coliving/show', { coliving });
+    res.render('coliving/show', { coliving, allColivings });
 };
 
 module.exports.renderEditForm = async (req, res) => {
