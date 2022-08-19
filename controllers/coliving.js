@@ -1,4 +1,5 @@
 const Coliving = require('../models/coliving');
+const Country = require('../models/country');
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapboxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapboxToken });
@@ -38,11 +39,19 @@ module.exports.showColiving = async (req, res,) => {
             path: 'author'
         }
     });
+    const country = await Country.find({
+        name: coliving.country
+    })
+    const countryData = country[0]
+    const recommendedColivings = await Coliving.find({
+        country: coliving.country,
+        _id: { $ne: coliving._id }
+    }) 
     if (!coliving) {
         req.flash('error', 'Cannot find that coliving!');
         return res.redirect('/coliving');
     }
-    res.render('coliving/show', { coliving, allColivings });
+    res.render('coliving/show', { coliving, allColivings, countryData, recommendedColivings});
 };
 
 module.exports.renderEditForm = async (req, res) => {

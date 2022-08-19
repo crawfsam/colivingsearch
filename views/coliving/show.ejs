@@ -31,10 +31,91 @@
             <p><%= coliving.description %></p>
             <a href="<%= coliving.url %>">For more info, visit their website</a> 
         </div>
+        <div class="mb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title mt-2 p-2"> About <%=countryData.name%> <%=countryData.emoji%></h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-landmark-flag"></i> <%=countryData.capital%>
+                    </li>
+                    <% if (countryData.monthlyCost.val) {%> 
+                        <li class="list-group-item">
+                            <i class="fas fa-money-bill"></i> $<%=countryData.monthlyCost.val%> per month (excl. rent)
+                            <% if (countryData.monthlyCost.rating === 5) {%> 
+                                💸 <i>(very expensive)</i>
+                            <% } else if (countryData.monthlyCost.rating === 4) { %>
+                                🤑 <i>(expensive)</i>
+                            <% } else if (countryData.monthlyCost.rating === 3) { %>
+                                👍 <i>(average)</i>
+                            <% } else if (countryData.monthlyCost.rating === 2) { %>
+                                💵 <i>(affordable)</i>
+                            <% } else { %>
+                                🙀 <i>(very affordable)</i>
+                            <% } %> 
+                        </li>
+                        <% } %> 
+                    <% if (countryData.wifiSpeed.val) {%> 
+                    <li class="list-group-item">
+                        <i class="fas fa-wifi"></i> <%=countryData.wifiSpeed.val%>mbps 
+                    <% if (countryData.wifiSpeed.rating === 5) {%> 
+                        😍
+                    <% } else if (countryData.wifiSpeed.rating === 4) { %>
+                        🙂
+                    <% } else if (countryData.wifiSpeed.rating === 3) { %>
+                        😐
+                    <% } else if (countryData.wifiSpeed.rating === 2) { %>
+                        🙁
+                    <% } else { %>
+                        😖
+                    <% } %> 
+                    </li>
+                    <% } %> 
+                    <% if (countryData.crimeRate.val) {%> 
+                    <li class="list-group-item">
+                        <i class="fas fa-handcuffs"></i> 
+                        <% if (countryData.crimeRate.rating === 5) {%> 
+                            Very High 😖 
+                        <% } else if (countryData.crimeRate.rating === 4) { %>
+                            High 🙁
+                        <% } else if (countryData.crimeRate.rating === 3) { %>
+                            Average 🙂
+                        <% } else if (countryData.crimeRate.rating === 2) { %>
+                            Safe 😄
+                        <% } else { %>
+                            Very Safe 😍 
+                        <% } %> 
+                    </li>
+                    <% } %> 
+                  </ul>
+                  <% if (recommendedColivings.length > 0) {%>
+                    <div class="card-header">
+                        <h5 class="card-title mt-2 p-1">Other Coliving Options in <%= coliving.country %></h5>
+                    </div>
+                    <% for (let reccoliving of recommendedColivings) { %> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="img-fluid" alt="image of <%=reccoliving.name%> in <%=reccoliving.country%>" src="<%= reccoliving.images[0].url%>">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= reccoliving.name %> </h5>
+                                    <p class="card-text text-muted">
+                                        <i class="fas fa-location-dot"></i> <%= reccoliving.city %>
+                                    </p>
+                                    <a class="btn btn-primary" href="/coliving/<%=reccoliving._id%>">See More</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                <% } %> 
+            </div>
+        </div>
     </div>
     <div class="col-sm-6">
             <div class="mb-5">
-                <h2 class="text-center"><%= coliving.city %>, <%=coliving.country%></h2>
+                <h2 class="text-center"><i class="fas fa-location-dot"></i> <%= coliving.city %>, <%=coliving.country%></h2>
                 <div class="p-0" id="map" style='width: 100%; height: 300px; max-height: 70vh;'></div>
             </div>
         <% if(currentUser){ %>
@@ -107,3 +188,4 @@
 </script>
 <script src="../js/miniMap.js"></script>
 <script src='/js/calcReviews.js'></script>
+<script src='/js/getCountryData.js'></script>
