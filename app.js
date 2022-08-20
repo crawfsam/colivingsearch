@@ -12,6 +12,8 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const Coliving = require('./models/coliving');
+const Country = require('./models/country');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoDBStore = require("connect-mongo")(session);
 const User = require('./models/user');
@@ -94,7 +96,18 @@ app.use('/coliving', colivingRoutes);
 app.use('/', reviewRoutes);
 
 app.get('/', async (req, res) => {
-    res.render('index');
+    const popular = ['Portugal', 'Mexico', 'Colombia']
+    const countries = await Country.find({name: { $in: popular }});
+    const recs = []
+    for(let country of countries) {
+        const n = await Coliving.find({country: country.name}).sort({'date': -1}).limit(3);
+        recs.push({
+            name: country.name,
+            emoji: country.emoji,
+            colivings: n
+        })
+    }
+    res.render('index', { recs });
 });
 
 app.all('*', (req, res, next) => {

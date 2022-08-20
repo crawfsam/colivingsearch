@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/stars.css">
 <div class="row">
     <div class="col-sm-6">
-        <h1 class="text-center"><%= coliving.name %></h1>
+        <h1 class="text-center mb-3"><%= coliving.name %></h1>
         <% if (coliving.images[0]) { %>
             <div id="colivingCarousel" class="carousel slide mb-3" data-ride="carousel">
                 <div class="carousel-inner">
@@ -44,15 +44,15 @@
                         <li class="list-group-item">
                             <i class="fas fa-money-bill"></i> $<%=countryData.monthlyCost.val%> per month (excl. rent)
                             <% if (countryData.monthlyCost.rating === 5) {%> 
-                                💸 <i>(very expensive)</i>
+                                💸💸💸💸💸
                             <% } else if (countryData.monthlyCost.rating === 4) { %>
-                                🤑 <i>(expensive)</i>
+                                💸💸💸💸
                             <% } else if (countryData.monthlyCost.rating === 3) { %>
-                                👍 <i>(average)</i>
+                                💸💸💸
                             <% } else if (countryData.monthlyCost.rating === 2) { %>
-                                💵 <i>(affordable)</i>
+                                💸💸
                             <% } else { %>
-                                🙀 <i>(very affordable)</i>
+                                💸
                             <% } %> 
                         </li>
                         <% } %> 
@@ -89,22 +89,22 @@
                     </li>
                     <% } %> 
                   </ul>
-                  <% if (recommendedColivings.length > 0) {%>
+                  <% if (recommendations.length > 0) {%>
                     <div class="card-header">
                         <h5 class="card-title mt-2 p-1">Other Coliving Options in <%= coliving.country %></h5>
                     </div>
-                    <% for (let reccoliving of recommendedColivings) { %> 
+                    <% for (let recommendation of recommendations) { %> 
                         <div class="row">
                             <div class="col-md-6">
-                                <img class="img-fluid" alt="image of <%=reccoliving.name%> in <%=reccoliving.country%>" src="<%= reccoliving.images[0].url%>">
+                                <img class="img-fluid" alt="image of <%=recommendation.name%> in <%=recommendation.country%>" src="<%= recommendation.images[0].url%>">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= reccoliving.name %> </h5>
+                                    <h5 class="card-title"><%= recommendation.name %> </h5>
                                     <p class="card-text text-muted">
-                                        <i class="fas fa-location-dot"></i> <%= reccoliving.city %>
+                                        <i class="fas fa-location-dot"></i> <%= recommendation.city %>
                                     </p>
-                                    <a class="btn btn-primary" href="/coliving/<%=reccoliving._id%>">See More</a>
+                                    <a class="btn btn-primary" href="/coliving/<%=recommendation._id%>">See More</a>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
     </div>
     <div class="col-sm-6">
             <div class="mb-5">
-                <h2 class="text-center"><i class="fas fa-location-dot"></i> <%= coliving.city %>, <%=coliving.country%></h2>
+                <h2 class="text-center mb-4"><i class="fas fa-location-dot"></i> <%= coliving.city %>, <%=coliving.country%></h2>
                 <div class="p-0" id="map" style='width: 100%; height: 300px; max-height: 70vh;'></div>
             </div>
         <% if(currentUser){ %>

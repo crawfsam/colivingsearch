@@ -43,15 +43,15 @@ module.exports.showColiving = async (req, res,) => {
         name: coliving.country
     })
     const countryData = country[0]
-    const recommendedColivings = await Coliving.find({
+    const recommendations = await Coliving.find({
         country: coliving.country,
         _id: { $ne: coliving._id }
-    }) 
+    }).sort({'date': -1}).limit(20)
     if (!coliving) {
         req.flash('error', 'Cannot find that coliving!');
         return res.redirect('/coliving');
     }
-    res.render('coliving/show', { coliving, allColivings, countryData, recommendedColivings});
+    res.render('coliving/show', { coliving, allColivings, countryData, recommendations});
 };
 
 module.exports.renderEditForm = async (req, res) => {

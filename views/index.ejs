@@ -2,6 +2,54 @@
 <div class="container">
     <h2>What is Coliving?</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quos perferendis deserunt vitae nulla deleniti cum autem laudantium quo modi recusandae enim accusamus dignissimos eaque quisquam, voluptas qui libero debitis!</p>
-    <h3>More dummy content</h3>
+    <h2>More dummy content</h2>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae aperiam consectetur voluptas rerum eos praesentium, officiis sapiente quam magni dolor itaque provident natus qui. Inventore ipsum dolorem magni atque autem!</p>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-11 mb-4 ">
+            <h2 class="text-center mb-4">Popular Countries among Digital Nomads</h2>
+            <% for (let rec of recs) { %>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title"><%= rec.name%> <%=rec.emoji%></h5>
+                </div>
+                <div class="card-body row">
+                    <div class="card col-4 p-2">
+                        <h5 class="card-title"><%= rec.colivings[0].name%></h5> 
+                        <p class="card-text">
+                            <small class="text-muted"> <i class="fas fa-location-dot"></i> <%=rec.colivings[0].city%></small>
+                        </p>
+                        <div class="card-body">
+                            <img class="img-fluid" alt="image of <%=rec.colivings[0].name%> in <%=rec.country%>" src="<%= rec.colivings[0].images[0].url%>">
+                        </div>
+                    </div>
+                    <div class="card col-4 p-2">
+                        <h5 class="card-title"><%= rec.colivings[1].name%></h5> 
+                        <p class="card-text">
+                            <small class="text-muted"> <i class="fas fa-location-dot"></i> <%=rec.colivings[1].city%></small>
+                        </p>
+                        <div class="card-body">
+                            <img class="img-fluid" alt="image of <%=rec.colivings[1].name%> in <%=rec.country%>" src="<%= rec.colivings[1].images[0].url%>">
+                        </div>
+                    </div>
+                    <div class="card col-4 p-2">
+                        <h5 class="card-title"><%= rec.colivings[2].name%></h5> 
+                        <p class="card-text">
+                            <small class="text-muted"> <i class="fas fa-location-dot"></i> <%=rec.colivings[2].city%></small>
+                        </p>
+                        <div class="card-body">
+                            <img class="img-fluid" alt="image of <%=rec.colivings[2].name%> in <%=rec.country%>" src="<%= rec.colivings[2].images[0].url%>">
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-4">
+                                <a href="/<%=rec.name%>">See all</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %> 
+        </div>
+    </div>
 </div>
