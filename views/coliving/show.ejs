@@ -7,29 +7,29 @@
             <div id="colivingCarousel" class="carousel slide mb-3" data-ride="carousel">
                 <div class="carousel-inner">
                     <% coliving.images.forEach((img, i) => {  %>
-                    <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-                        <img src="<%= img.url%>" class="d-block w-100" alt="image of <%=coliving.name%> in <%=coliving.country%>">
-                    </div>
+                        <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+                            <img src="<%= img.url%>" class="d-block w-100" alt="image of <%=coliving.name%> in <%=coliving.country%>">
+                        </div>
                     <% }) %>
-    
                 </div>
                 <% if(coliving.images.length > 1) {%>
-                <a class="carousel-control-prev" href="#colivingCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#colivingCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                    <a class="carousel-control-prev" href="#colivingCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#colivingCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 <% } %>
             </div>
         <% } %>
         <div id="rating" class="mb-5">
         </div>
         <div class="mb-5">
-            <p><%= coliving.description %></p>
-            <a href="<%= coliving.url %>">For more info, visit their website</a> 
+            <p><%= coliving.description %><br><br>
+                <a href="<%= coliving.url %>">For more info, visit their website</a> 
+            </p>
         </div>
         <div class="mb-5">
             <div class="card">
@@ -41,35 +41,35 @@
                         <i class="fas fa-landmark-flag"></i> <%=countryData.capital%>
                     </li>
                     <% if (countryData.monthlyCost.val) {%> 
-                        <li class="list-group-item">
-                            <i class="fas fa-money-bill"></i> $<%=countryData.monthlyCost.val%> per month (excl. rent)
-                            <% if (countryData.monthlyCost.rating === 5) {%> 
-                                💸💸💸💸💸
-                            <% } else if (countryData.monthlyCost.rating === 4) { %>
-                                💸💸💸💸
-                            <% } else if (countryData.monthlyCost.rating === 3) { %>
-                                💸💸💸
-                            <% } else if (countryData.monthlyCost.rating === 2) { %>
-                                💸💸
-                            <% } else { %>
-                                💸
-                            <% } %> 
-                        </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-money-bill"></i> $<%=countryData.monthlyCost.val%> per month (excl. rent)
+                        <% if (countryData.monthlyCost.rating === 5) {%> 
+                            💸💸💸💸💸
+                        <% } else if (countryData.monthlyCost.rating === 4) { %>
+                            💸💸💸💸
+                        <% } else if (countryData.monthlyCost.rating === 3) { %>
+                            💸💸💸
+                        <% } else if (countryData.monthlyCost.rating === 2) { %>
+                            💸💸
+                        <% } else { %>
+                            💸
+                        <% } %> 
+                    </li>
                         <% } %> 
                     <% if (countryData.wifiSpeed.val) {%> 
                     <li class="list-group-item">
                         <i class="fas fa-wifi"></i> <%=countryData.wifiSpeed.val%>mbps 
-                    <% if (countryData.wifiSpeed.rating === 5) {%> 
-                        😍
-                    <% } else if (countryData.wifiSpeed.rating === 4) { %>
-                        🙂
-                    <% } else if (countryData.wifiSpeed.rating === 3) { %>
-                        😐
-                    <% } else if (countryData.wifiSpeed.rating === 2) { %>
-                        🙁
-                    <% } else { %>
-                        😖
-                    <% } %> 
+                        <% if (countryData.wifiSpeed.rating === 5) {%> 
+                            😍
+                        <% } else if (countryData.wifiSpeed.rating === 4) { %>
+                            🙂
+                        <% } else if (countryData.wifiSpeed.rating === 3) { %>
+                            😐
+                        <% } else if (countryData.wifiSpeed.rating === 2) { %>
+                            🙁
+                        <% } else { %>
+                            😖
+                        <% } %> 
                     </li>
                     <% } %> 
                     <% if (countryData.crimeRate.val) {%> 
@@ -88,85 +88,87 @@
                         <% } %> 
                     </li>
                     <% } %> 
-                  </ul>
-                  <% if (recommendations.length > 0) {%>
-                    <div class="card-header">
-                        <h5 class="card-title mt-2 p-1">Other Coliving Options in <%= coliving.country %></h5>
-                    </div>
-                    <% for (let recommendation of recommendations) { %> 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img class="img-fluid" alt="image of <%=recommendation.name%> in <%=recommendation.country%>" src="<%= recommendation.images[0].url%>">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card-body">
-                                    <h5 class="card-title"><%= recommendation.name %> </h5>
-                                    <p class="card-text text-muted">
-                                        <i class="fas fa-location-dot"></i> <%= recommendation.city %>
-                                    </p>
-                                    <a class="btn btn-primary" href="/coliving/<%=recommendation._id%>">See More</a>
-                                </div>
-                            </div>
-                        </div>
-                    <% } %> 
-                <% } %> 
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="col-sm-6">
-            <div class="mb-5">
-                <h2 class="text-center mb-4"><i class="fas fa-location-dot"></i> <%= coliving.city %>, <%=coliving.country%></h2>
-                <div class="p-0" id="map" style='width: 100%; height: 300px; max-height: 70vh;'></div>
-            </div>
-        <% if(currentUser){ %>
-            <div class="mb-5">
-                <h3>Leave a Review</h2>
-                <form action="/coliving/<%=coliving._id%>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
-                    <fieldset class="starability-basic">
-                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
-                            aria-label="No rating." />
-                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-                        <label for="first-rate1" title="Terrible">1 star</label>
-                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-                        <label for="first-rate2" title="Not good">2 stars</label>
-                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-                        <label for="first-rate3" title="Average">3 stars</label>
-                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-                        <label for="first-rate4" title="Very good">4 stars</label>
-                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-                        <label for="first-rate5" title="Amazing">5 stars</label>
-                    </fieldset>
-                    <div class="mb-3">
-                        <label class="form-label" for="body">Review Text</label>
-                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
-                        <div class="valid-feedback">
-                            Looks good!
+        <% if (recommendations.length > 0) {%>
+            <div class="mt-5">
+                <div class="card-header">
+                    <h5 class="card-title mt-2 p-1">Other Coliving Options in <%= coliving.country %></h5>
+                </div>
+                <% for (let recommendation of recommendations) { %> 
+                <div class="rec row">
+                    <div class="col-md-6">
+                        <img class="img-fluid" alt="image of <%=recommendation.name%> in <%=recommendation.country%>" src="<%= recommendation.images[0].url%>">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= recommendation.name %> </h5>
+                            <p class="card-text text-muted">
+                                <i class="fas fa-location-dot"></i> <%= recommendation.city %>
+                            </p>
+                            <a class="btn btn-primary" href="/coliving/<%=recommendation._id%>">See More</a>
                         </div>
                     </div>
-                    <button class="btn btn-success">Submit</button>
-                </form>
-            </div>
-        <% } else {%>
-            <div class="mb-5">
-                <h3>Leave a Review</h2>
-                <p>To leave a review you will need to <a href="/login">log in</a> or <a href="/register">register</a></p>   
+                </div>
+                <% } %>
             </div>
         <% } %>
-        <% for (let review of coliving.reviews) { %> 
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h4><%=review.author.username%></h4>
-                    <p class="starability-result" data-rating="<%=review.rating%>">
-                        Rated: <%= review.rating %> stars
-                    </p>
-                    <p class="card-text"><%= review.body %></p>
-                    <% if( currentUser && review.author.equals(currentUser._id) || currentUser && currentUser.isAdmin )  {%> 
-                    <form action="/coliving/<%=coliving._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </form>
-                    <% } %>
+    </div>
+    <div class="col-sm-6">
+        <div class="mb-5">
+            <h2 class="text-center mb-4"><i class="fas fa-location-dot"></i> <%= coliving.city %>, <%=coliving.country%></h2>
+            <div class="p-0" id="map" style='width: 100%; height: 300px; max-height: 70vh;'></div>
+        </div>
+        <% if(currentUser){ %>
+        <div class="mb-5">
+            <h3>Leave a Review</h2>
+            <form action="/coliving/<%=coliving._id%>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
+                <fieldset class="starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                        aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Review Text</label>
+                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
+                <button class="btn">Submit</button>
+            </form>
+        </div>
+        <% } else {%>
+        <div class="mb-5">
+            <h3>Leave a Review</h2>
+            <p>To leave a review you will need to <a href="/login">log in</a> or <a href="/register">register</a></p>   
+        </div>
+        <% } %>
+        <% for (let review of coliving.reviews) { %> 
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4><%=review.author.username%></h4>
+                <p class="starability-result" data-rating="<%=review.rating%>">
+                    Rated: <%= review.rating %> stars
+                </p>
+                <p class="card-text"><%= review.body %></p>
+                <% if( currentUser && review.author.equals(currentUser._id) || currentUser && currentUser.isAdmin )  {%> 
+                <form action="/coliving/<%=coliving._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                <% } %>
             </div>
+        </div>
         <% } %>
         <% if (currentUser && currentUser.isAdmin) { %>
         <div class="col-6 mb-3">
@@ -177,7 +179,7 @@
         </div>
         <% } %>
         <div class="col-6 mb-5">
-            <a href="/coliving">Back to Coliving Search</a>
+            <p><a href="/coliving">Back to Coliving Search</a></p>
         </div>
     </div>
 </div>

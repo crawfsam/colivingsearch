@@ -5,29 +5,34 @@
             <h1 class="mb-4">Welcome to Co-live Search</h1>
             <img src="/images/hero.jpg" class="img-fluid w-100" id="hero" style="max-width: 800px;" alt="Responsive image">
         </div>
+        <div class="col-12 mb-2 text-center">
+            <a class="btn">Start Searching</a>
+        </div>
     </div>
-    <h2>What is Coliving?</h2>
-    <p>Coliving accommodations are a relatively new phenomenon mostly driven by the trend of digital nomads, slow-travellers, and other location-independents.<br><br>
-
-        They are more than just living together with roommates, instead they foster a community of knowledge and idea sharing, as well as a networking environment to learn and grow with other likeminded remote workers, freelancers and entrepreneurs.<br><br>
-        
-        Many Coliving communities offer a place to work from (i.e. a coworking space), and even community events where you can network even further.</p>
-    <h2>The cost of medium- and long-term travel</h2>
-    <p>As you probably are aware of, if you have been travelling for a long- or medium-term before, finding affordable accommodation can be tricky. <br><br>
-
-        Accommodation is usually priced for tourism, which can make things extortionately priced for slow-travelling digital nomads, who typically stay for a few months in one location. <br><br>
-        
-        Although sharing accommodation with others isn’t for everyone, you have to admit that it certainly brings the price drown, and aside from that the community value that you gain from a coliving option can make your trip much more memorable. </p>
-    <h2>Why did we create Co-live Search?</h2>
-    <p>Since not nearly enough people know about coliving options as they should, this tool not only aims to promote the idea and benefits of coliving, but also help digital nomads find popular accommodation options around the world without paying the high tourist prices they often have to give into.<br><br>
-
-        Since it is a relatively undiscovered form of living, they can be hard to find online. Many of the best ones are in fact being discovered by word of mouth. If you are aware of any coliving options not covered by our search tool, we would be happy to hear from you!</p>
-    <h2>Where can I begin with my search?</h2>
-    <p><a href="/coliving">Check out our map</a> to see all of the current coliving options we have listed.<br><br>
-
-        When viewing each specific option, we encourage you to leave a review to help share more useful information to other travellers. You will need to <a href="/register">create an account</a> to do that.<br><br>
-        
-        Finally, you can search by country, and below, you will find some of the more popular destinations, and what kind of places are available. <br><br> <strong>Good luck on your search!</strong></p>
+    <div class="content">
+        <h2>What is Coliving?</h2>
+        <p>Coliving accommodations are a relatively new phenomenon mostly driven by the trend of digital nomads, slow-travellers, and other location-independents.<br><br>
+    
+            They are more than just living together with roommates, instead they foster a community of knowledge and idea sharing, as well as a networking environment to learn and grow with other likeminded remote workers, freelancers and entrepreneurs.<br><br>
+            
+            Many Coliving communities offer a place to work from (i.e. a coworking space), and even community events where you can network even further.</p>
+        <h2>The cost of medium- and long-term travel</h2>
+        <p>As you probably are aware of, if you have been travelling for a long- or medium-term before, finding affordable accommodation can be tricky. <br><br>
+    
+            Accommodation is usually priced for tourism, which can make things extortionately priced for slow-travelling digital nomads, who typically stay for a few months in one location. <br><br>
+            
+            Although sharing accommodation with others isn’t for everyone, you have to admit that it certainly brings the price drown, and aside from that the community value that you gain from a coliving option can make your trip much more memorable. </p>
+        <h2>Why did we create Co-live Search?</h2>
+        <p>Since not nearly enough people know about coliving options as they should, this tool not only aims to promote the idea and benefits of coliving, but also help digital nomads find popular accommodation options around the world without paying the high tourist prices they often have to give into.<br><br>
+    
+            Since it is a relatively undiscovered form of living, they can be hard to find online. Many of the best ones are in fact being discovered by word of mouth. If you are aware of any coliving options not covered by our search tool, we would be happy to hear from you!</p>
+        <h2>Where can I begin with my search?</h2>
+        <p><a href="/coliving">Check out our map</a> to see all of the current coliving options we have listed.<br><br>
+    
+            When viewing each specific option, we encourage you to leave a review to help share more useful information to other travellers. You will need to <a href="/register">create an account</a> to do that.<br><br>
+            
+            Finally, you can search by country, and below, you will find some of the more popular destinations, and what kind of places are available. <br><br> <strong>Good luck on your search!</strong></p>
+    </div>
 </div>
 <div class="container">
     <div class="row justify-content-center">
@@ -37,8 +42,9 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <h5 class="card-title"><%= rec.name%> <%=rec.emoji%></h5>
+                    <p id="see-all" ><a href="/<%=rec.name%>">See all</a></p>
                 </div>
-                <div class="home-break-one">
+                <div class="break-one">
                     <div class="card-body row justify-content-center">
                         <div class="card col-3 p-2" onclick="window.location = '/coliving/<%=rec.colivings[0]._id%>'">
                             <h5 class="card-title"><%= rec.colivings[0].name%></h5> 
@@ -69,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="home-break-two">
+                <div class="break-two">
                     <div class="card-body row justify-content-center">
                         <div class="card col-4 p-2" onclick="window.location = '/coliving/<%=rec.colivings[0]._id%>'">
                             <h5 class="card-title"><%= rec.colivings[0].name%></h5> 
@@ -91,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="home-break-three">
+                <div class="break-three">
                     <div class="slider card-body row justify-content-center">
                         <div class="slides">
                             <div class="slide card col-12" onclick="window.location = '/coliving/<%=rec.colivings[0]._id%>'">
@@ -129,9 +135,3 @@
         </div>
     </div>
 </div>
-
-<!-- <div class="row justify-content-end">
-    <div class="col-4">
-        <a href="/rec.name%>">See all</a>
-    </div>
-</div> -->

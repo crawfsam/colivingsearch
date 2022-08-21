@@ -73,10 +73,14 @@ body {
   background-color: #2d3142;
 }
 
+.card-header .card-title {
+  margin: 0.5em;
+}
+
 
 .card-body .card {
   border: 2px solid white;
-  margin: 0em 2em;
+  margin: 0em 1em;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -108,6 +112,7 @@ body {
 
 #hero {
   border-radius: 0.5em;
+  margin-top: 2.5em;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -130,25 +135,39 @@ p a:hover {
 
 
   @media only screen and (max-width: 991px) {
-    .home-break-one {
+    .break-one {
       display: none;
+    }
+
+    #see-all {
+      left: 80%;
     }
   }
 
   @media only screen and (min-width: 992px) {
-    .home-break-two  {
+    .break-two  {
       display: none;
+    }
+
+    #see-all {
+      left: 90%;
     }
   }
 
   @media only screen and (max-width: 767px) {
-    .home-break-two {
+    .break-two {
       display: none;
     }
+
+    #see-all {
+      left: 65%;
+    }
+
   }
 
+
   @media only screen and (min-width: 768px) {
-    .home-break-three {
+    .break-three {
       display: none;
     }
   }
@@ -163,4 +182,37 @@ p a:hover {
     overflow-x: scroll;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .content p {
+    margin-bottom: 4em;
+  }
+
+  .content h2, .content h3 {
+    margin-bottom: 0.8em;
+  }
+
+  .btn {
+    background-color: #2d3142;
+    color: #fff;
+    border: none;
+  }
+
+  .btn:hover {
+    background-color: #ef8354;
+    color: #2d3142;
+  }
+
+
+  .rec {
+    margin: 2em 0em;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0.5em;
+  }
+
+  #see-all {
+    position: absolute;
+    right: 0;
+    top: 17px;
+    bottom: 0px;
   }
