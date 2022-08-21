@@ -8,6 +8,7 @@ projection: 'globe'
 });
 
 for(let coliving of allColivings) {
+    
     new mapboxgl.Marker()
     .setLngLat(coliving.geometry.coordinates)
     .addTo(map)

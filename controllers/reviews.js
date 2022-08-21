@@ -15,6 +15,6 @@ module.exports.deleteReview = async (req, res) => {
     const { id, reviewId } = req.params;
     await Coliving.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
-    req.flash('success', 'Successfully deleted review')
+    req.flash('success', 'Successfully Deleted Review')
     res.redirect(`/coliving/${id}`);
 };

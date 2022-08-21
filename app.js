@@ -110,6 +110,31 @@ app.get('/', async (req, res) => {
     res.render('index', { recs });
 });
 
+app.get('/:country', async (req, res) => {
+    const recommendations = await Coliving.find({country: req.params.country}).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });;
+    if(!recommendations[0]) {
+        res.redirect('/coliving')
+    }
+    const country = await Country.find({name: req.params.country});
+    const countryData = country[0];
+
+    const cs = await Coliving.find({}).select('country').distinct('country')
+    availCountries = []
+    for(let c of cs) {
+        num = await Coliving.find({}).select('country').count({country: c})
+        availCountries.push({
+            name: c,
+            num
+        })
+    }
+    res.render('country-profile', { recommendations, countryData, availCountries })
+})
+
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 });

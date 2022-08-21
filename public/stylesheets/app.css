@@ -51,7 +51,7 @@ body {
     text-decoration: underline;
   }
 
-  nav a, h4, h5 {
+  nav a, h4, h5, .popup p, .popup a {
     font-family: 'Esteban', serif;
   }
 
@@ -60,7 +60,7 @@ body {
     color: #2d3142;
   }
 
-  nav span, label, input, button, .btn, .alert, p, a, small, li, i {
+  nav span, label, input, button, .btn, .alert, p, a, small, li, i, .popup strong p {
     font-family: 'Montserrat', sans-serif;
   }
 
@@ -215,4 +215,60 @@ p a:hover {
     right: 0;
     top: 17px;
     bottom: 0px;
+  }
+
+  .marker i  {
+    color:#ef8354;
+    box-shadow: 5px 10px 8px #888888;
+    font-size: 22px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+
+  .popup img {
+    margin: 1em 0em;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  } 
+
+  .popup strong p {
+    font-size: 14px;
+  }
+
+  .popup {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+
+  .popup a {
+    color: #ef8354;
+  }
+
+  .popup a:hover {
+    color: #2d3142;
+  }
+
+  .mapboxgl-popup-close-button {
+    font-size: 3.5em;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #ef8354;
+  }
+
+  .mapboxgl-popup-close-button:hover {
+    background-color: #fff;
+    color: #2d3142;
+    font-weight: 700;
+  }
+
+  .country {
+    margin: 3em 2em;
+    line-height: 1em;
+    white-space: nowrap;
+  }
+
+  .alert {
+    background-color: #2d3142;
+    color: #fff;
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }

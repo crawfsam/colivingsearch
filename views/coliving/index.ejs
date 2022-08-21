@@ -2,7 +2,17 @@
 <link rel="stylesheet" href="/stylesheets/stars.css">
 <div class="container mb-5 p-0">
 	<h1 class="mb-5 text-center">Coliving Community Map Search</h1>
-	<div class="p-0" id="map" style='width: 100%; height: 600px; max-height: 100vh;'></div>
+	<div class="p-0 mb-5" id="map" style='width: 100%; height: 600px; max-height: 100vh;'></div>
+	<div class="mb-5">
+		<div class="row justify-content-center">
+			<div class="col-6 text-justified">
+				<h3>Search By Country</h3>
+			<% for (let country of availCountries) { %>
+				<a class="country" href="/<%=country.name%>"><%=country.name%> (<%=country.num%>)</a>
+			<% } %>
+			</div>
+		</div>
+	</div>
 </div>
 <script>
 	const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

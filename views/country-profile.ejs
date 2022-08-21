@@ -1,0 +1,104 @@
+<% layout('layouts/boilerplate')%>
+<div class="row justify-content-center">
+    <div class="col-9">
+        <div class="mb-5 text-center">
+            <h1><%=countryData.name%></h1>
+        </div>
+        <div class="mb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title mt-2 p-2"> Country Profile: <%=countryData.name%> <%=countryData.emoji%></h2>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-landmark-flag"></i> <%=countryData.capital%>
+                    </li>
+                    <% if (countryData.monthlyCost.val) {%> 
+                    <li class="list-group-item">
+                        <i class="fas fa-money-bill"></i> $<%=countryData.monthlyCost.val%> per month (excl. rent)
+                        <% if (countryData.monthlyCost.rating === 5) {%> 
+                            💸💸💸💸💸
+                        <% } else if (countryData.monthlyCost.rating === 4) { %>
+                            💸💸💸💸
+                        <% } else if (countryData.monthlyCost.rating === 3) { %>
+                            💸💸💸
+                        <% } else if (countryData.monthlyCost.rating === 2) { %>
+                            💸💸
+                        <% } else { %>
+                            💸
+                        <% } %> 
+                    </li>
+                        <% } %> 
+                    <% if (countryData.wifiSpeed.val) {%> 
+                    <li class="list-group-item">
+                        <i class="fas fa-wifi"></i> <%=countryData.wifiSpeed.val%>mbps 
+                        <% if (countryData.wifiSpeed.rating === 5) {%> 
+                            😍
+                        <% } else if (countryData.wifiSpeed.rating === 4) { %>
+                            🙂
+                        <% } else if (countryData.wifiSpeed.rating === 3) { %>
+                            😐
+                        <% } else if (countryData.wifiSpeed.rating === 2) { %>
+                            🙁
+                        <% } else { %>
+                            😖
+                        <% } %> 
+                    </li>
+                    <% } %> 
+                    <% if (countryData.crimeRate.val) {%> 
+                    <li class="list-group-item">
+                        <i class="fas fa-handcuffs"></i> 
+                        <% if (countryData.crimeRate.rating === 5) {%> 
+                            Very High 😖 
+                        <% } else if (countryData.crimeRate.rating === 4) { %>
+                            High 🙁
+                        <% } else if (countryData.crimeRate.rating === 3) { %>
+                            Average 🙂
+                        <% } else if (countryData.crimeRate.rating === 2) { %>
+                            Safe 😄
+                        <% } else { %>
+                            Very Safe 😍 
+                        <% } %> 
+                    </li>
+                    <% } %> 
+                </ul>
+            </div>
+        </div>
+        <div class="mb-5">
+                <div class="card-header">
+                    <h2 class="card-title mt-2 p-1">Coliving Options in <%= countryData.name %></h2>
+                </div>
+                <% for (let recommendation of recommendations) { %> 
+                    <div class="rec row">
+                        <div class="col-md-6">
+                            <img class="img-fluid" alt="image of <%=recommendation.name%> in <%=recommendation.country%>" src="<%= recommendation.images[0].url%>">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= recommendation.name %> </h5>
+                                <p class="card-text text-muted">
+                                    <i class="fas fa-location-dot"></i> <%= recommendation.city %>
+                                </p>
+                                <% if (recommendation.reviews.length > 0) {  %>
+                                    <a href="/coliving/<%=recommendation._id%>">See reviews (<%=recommendation.reviews.length%>)</a><br><br>
+                                <% } else { %>
+                                <a href="/coliving/<%=recommendation._id%>">No reviews yet, be the first!</a><br><br>
+                                <% } %>
+                                <a class="btn btn-primary" href="/coliving/<%=recommendation._id%>">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }%>
+        </div>
+        <div class="mb-5">
+            <div class="row justify-content-center">
+                <div class="col-9 text-justified">
+                    <h3>Search By Country</h3>
+                <% for (let country of availCountries) { %>
+                    <a class="country" href="/<%=country.name%>"><%=country.name%> (<%=country.num%>)</a>
+                <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

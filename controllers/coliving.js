@@ -4,6 +4,7 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapboxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapboxToken });
 const { cloudinary } = require('../cloudinary');
+const country = require('../models/country');
  
  module.exports.index = async (req, res) => {
     const coliving = await Coliving.find({}).populate({
@@ -12,7 +13,17 @@ const { cloudinary } = require('../cloudinary');
             path: 'author'
         }
     });
-    res.render('coliving/index', {coliving} );
+
+    const cs = await Coliving.find({}).select('country').distinct('country')
+    availCountries = []
+    for(let c of cs) {
+        num = await Coliving.find({}).select('country').count({country: c})
+        availCountries.push({
+            name: c,
+            num
+        })
+    }
+    res.render('coliving/index', {coliving, availCountries} );
 };
 
 module.exports.new = (req, res) => {
